@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prof. Meesoon Ha</title>
+<style>
+:root{--ink:#1d2433;--sub:#5b6577;--line:#e3e7ee;--accent:#2f5d9e;--bg:#f7f9fc}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--ink);line-height:1.7;background:#fff}
+header.nav{position:sticky;top:0;background:#fffffff2;backdrop-filter:blur(6px);border-bottom:1px solid var(--line);z-index:5}
+.nav .in{max-width:960px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:14px 24px}
+.nav b{font-size:1.05rem}
+.nav a{color:var(--sub);text-decoration:none;margin-left:20px;font-size:.95rem}
+.nav a:hover{color:var(--accent)}
+.hero{background:linear-gradient(135deg,#eaf1fb,#f7f9fc);padding:80px 24px}
+.hero .in{max-width:960px;margin:auto}
+.hero h1{font-size:2.6rem;margin:0 0 6px}
+.hero p{font-size:1.15rem;color:var(--sub);margin:4px 0}
+section{max-width:960px;margin:auto;padding:56px 24px}
+h2{font-size:1.5rem;margin:0 0 20px;padding-bottom:8px;border-bottom:2px solid var(--accent);display:inline-block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card small{color:var(--sub);display:block}
+.card strong{font-size:1.1rem}
+table{border-collapse:collapse;width:100%;margin-top:10px}
+th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;font-size:.95rem}
+th{background:var(--bg)}
+.todo{color:#9a6b00;background:#fff7e0;border:1px dashed #e0b84a;border-radius:8px;padding:10px 14px;font-size:.92rem}
+.links a{display:inline-block;margin:4px 10px 4px 0;padding:8px 16px;border:1px solid var(--accent);border-radius:20px;color:var(--accent);text-decoration:none}
+.links a:hover{background:var(--accent);color:#fff}
+ol.pubs{padding-left:22px}ol.pubs li{margin-bottom:12px}ol.pubs span{color:var(--sub);font-size:.9rem}
+footer{text-align:center;color:var(--sub);font-size:.85rem;padding:30px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header class="nav"><div class="in"><b>Meesoon Ha</b>
+<nav><a href="#about">소개</a><a href="#teaching">강의</a><a href="#research">연구</a><a href="#publications">논문</a><a href="#contact">연락처</a></nav></div></header>
+
+<div class="hero"><div class="in">
+<h1>Prof. Meesoon Ha</h1>
+<p>조선대학교 물리교육과 · 통계물리 · 전산물리</p>
+<p style="font-size:1rem">컴퓨터로 물리 문제를 모형화하고, 계산하고, 검증하는 수업을 합니다.</p>
+</div></div>
+
+<section id="about">
+<h2>소개</h2>
+<p>조선대학교 물리교육과 교수. 2011년 3월부터 광주 조선대학교 물리교육과에서 재직하고 있습니다. 2006년 9월부터 KIAS 물리학부 Alumni 및 Associate Member입니다.</p>
+<h3>경력</h3>
+<table>
+<tr><th>기간</th><th>소속</th></tr>
+<tr><td>2011.3 ~ 현재</td><td>조선대학교 물리교육과 교수</td></tr>
+<tr><td>2007.9 ~ 2011.2</td><td>KAIST 물리학과 BK21 연구교수</td></tr>
+<tr><td>2006.9 ~ 2007.8</td><td>전북대학교 BK21 기금교수</td></tr>
+<tr><td>2003.8 ~ 2006.8</td><td>고등과학원(KIAS) 연구원</td></tr>
+</table>
+<p>박사 전공: 통계물리와 관련 응집물질 이론 (지도교수 Marcel den Nijs, 미국 워싱턴대학교 시애틀)</p>
+<p class="links"><a href="http://newton.kias.re.kr/~msha/">기존 홈페이지</a></p>
+</section>
+
+<section id="teaching">
+<h2>강의</h2>
+<h3>전산물리 (2026학년도 2학기)</h3>
+<div class="grid">
+<div class="card"><small>대상</small><strong>물리교육과 저학년</strong></div>
+<div class="card"><small>학점</small><strong>3학점</strong></div>
+<div class="card"><small>수강 인원</small><strong>10명 내외</strong></div>
+<div class="card"><small>시수</small><strong>주 3시간</strong><small>이론+예제 실습 2시간 · 과제 도전 1시간</small></div>
+</div>
+<p>실습 환경: 파이썬3, 구글 코랩, numpy·matplotlib, Web VPython. 교재 홈페이지: <a href="https://sites.google.com/view/compphys/">sites.google.com/view/compphys</a></p>
+
+<h3>평가</h3>
+<table>
+<tr><th>항목</th><th>비중</th><th>내용</th></tr>
+<tr><td>출석</td><td>20%</td><td>매 수업 출석</td></tr>
+<tr><td>매주 실습 코드 공유</td><td>30%</td><td>코랩 노트북, 결과 그래프 PDF, AI 사용 기록 제출</td></tr>
+<tr><td>중간시험 대체 프로젝트</td><td>25%</td><td>P1·P2 중 1개, 발표 15 + 리포트 10 (8주차)</td></tr>
+<tr><td>기말시험 대체 프로젝트</td><td>25%</td><td>P3~P5 중 1개, 발표 15 + 리포트 10 (15주차)</td></tr>
+</table>
+
+<h3>주차별 주제</h3>
+<table>
+<tr><th>주</th><th>주제</th></tr>
+<tr><td>1</td><td>오리엔테이션, 전산물리와 파이썬, 첫 프로그램</td></tr>
+<tr><td>2</td><td>그래프 그리기</td></tr>
+<tr><td>3</td><td>그 밖의 시각화와 VPython</td></tr>
+<tr><td>4</td><td>급수 계산</td></tr>
+<tr><td>5</td><td>근 찾기: 이분법과 뉴턴 방법</td></tr>
+<tr><td>6</td><td>곡선 맞춤: 최소제곱법과 경사하강법</td></tr>
+<tr><td>7</td><td>1차 미분방정식: 오일러와 룬게-쿠타</td></tr>
+<tr><td>8</td><td>중간 프로젝트 발표</td></tr>
+<tr><td>9</td><td>F=ma 수치적분: 뛰어넘기와 경곗값 문제</td></tr>
+<tr><td>10</td><td>경계값 문제와 열전도 방정식</td></tr>
+<tr><td>11</td><td>전기장과 전기퍼텐셜, 라플라스 방정식</td></tr>
+<tr><td>12</td><td>브라운 운동과 확률 방정식</td></tr>
+<tr><td>13</td><td>몬테카를로 방법과 이징 모형</td></tr>
+<tr><td>14</td><td>퍼셉트론과 학습</td></tr>
+<tr><td>15</td><td>기말 프로젝트 발표</td></tr>
+</table>
+<p class="links" style="margin-top:20px"><a href="../전산물리_인터랙티브_학습자료.html">인터랙티브 학습자료</a></p>
+</section>
+
+<section id="research">
+<h2>연구</h2>
+<p>다양한 복잡계에서 유한 크기 스케일링으로 임계 현상과 상전이를 연구합니다. 저차원 비평형 과정에서 복잡 네트워크까지 다룹니다.</p>
+<p>연구실: 통계물리·복잡계 연구실(Statistical Physics &amp; Complex Systems Lab, SPCSL)</p>
+
+</section>
+
+<section id="publications">
+<h2>논문</h2>
+<p>53편 (출처: 기존 홈페이지 논문 목록, 최신순)</p>
+<ol class="pubs">
+<li><b>Impact of capacity volatility and input substitutability on supply chain resilience</b><br><span>(submitted to Phys. Rev. E; under review); arXiv:2606.06874v1</span></li>
+<li><b>Role of volatility mixing in wealth condensation</b><br><span>Phys. Rev. E 114, 024315 (2026); arXiv:2604.13885</span></li>
+<li><b>Anomaly, class division, and decoupling in income dynamics</b><br><span>Phys. Rev. E 113, 054305 (2026); arXiv:2506.08175</span></li>
+<li><b>Semantic Network Analysis of Achievement Standards in Physics of 2022 Revised Curriculum</b><br><span>New Physics: Sae Mulli 74, 944-957 (2024)</span></li>
+<li><b>Interplay of network structure and talent configuration on wealth dynamics</b><br><span>Phys. Rev. E 110, 024312 (2024); arXiv:2404.04175</span></li>
+<li><b>Hidden multiscale organization and robustness of real multiplex networks</b><br><span>Phys. Rev. E 109, 024301 (2024); arXiv:2307.01293</span></li>
+<li><b>Scaling Relations between Regional School-age Population Density and Densities of College Departments and Students by Majors</b><br><span>New Physics: Sae Mulli 73, 858-865 (2023)</span></li>
+<li><b>Quantumness and thermodynamic uncertainty relation of the finite-time Otto cycle</b><br><span>Phys. Rev. E 103, 022136 (2021); arXiv:2011.05699v3</span></li>
+<li><b>Driven Contact Process with Temporal Feedback</b><br><span>New Physics: Sae Mulli 70, 613-617 (2020)</span></li>
+<li><b>Finite-time quantum Otto engine: Surpassing the quasistatic efficiency due to friction</b><br><span>Phys. Rev. E 101, 022127 (2020); arXiv:1911.03622v3</span></li>
+<li><b>Passive Tracer Dynamics in Slow-Bond Problem</b><br><span>J. Stat. Mech. (2019) P094009; arXiv:1905.00083v3</span></li>
+<li><b>Impact of temporal connectivity patterns on epidemic process</b><br><span>Eur. Phys. J. B. 91, 161 (2019); arXiv:1906.03442v2</span></li>
+<li><b>Critical Phenomena of the Generalized Epidemic Process</b><br><span>New Physics: Sae Mulli 69, 649-654 (2019)</span></li>
+<li><b>Effect of Thermal Noise on Conserved Lattice Gas</b><br><span>Journal of the Korean Physics Society 74,918-922 (2019)</span></li>
+<li><b>Role of hubs in the synergistic spread of behavior</b><br><span>Phys. Rev. E 99, 020301(R) (2019); arXiv:1809.11041v4</span></li>
+<li><b>Dynamic topologies of activity-driven temporal networks with memory</b><br><span>Phys. Rev. E 97, 062148 (2018); arXiv:1711.07868v3</span></li>
+<li><b>Role of Cutoff Scaling in Scale-Free Networks</b><br><span>New Physics: Sae Mulli 68, 563-569 (2018)</span></li>
+<li><b>Jamming and condensation in one-dimensional driven flow</b><br><span>Phys. Rev. E 97, 032120 (2018); arXiv:1711.02728v4</span></li>
+<li><b>Finite-Size Scaling in q-Coloring Problems</b><br><span>New Physics: Sae Mulli 67, 1023-1027 (2017)</span></li>
+<li><b>Effects of a local defect on one-dimensional nonlinear surface growth</b><br><span>Phys. Rev. E 95, 042123 (2017); arXiv:1610.01074v3</span></li>
+<li><b>Generalized Conserved Lattice Gas on Random Networks</b><br><span>New Physics: Sae Mulli 66, 1210-1214 (2016)</span></li>
+<li><b>Universality classes of generalized epidemic process on random networks</b><br><span>Phys. Rev. E 93, 052304 (2016); arXiv:1512.04457v4</span></li>
+<li><b>Scaling properties in time-varying networks with memory</b><br><span>Eur. Phys. J. B. 88, 315 (2015); arXiv:1508.03545v3</span></li>
+<li><b>Spatial Correlations and Extended Self-Similarity Properties in Sandpiles</b><br><span>New Physics: Sae Mulli 65, 1009-1012 (2015)</span></li>
+<li><b>Effects of junctional correlations in the totally asymmetric simple exclusion process on random regular networks</b><br><span>Phys. Rev. E 90, 062111 (2014); arXiv:1410.2185</span></li>
+<li><b>Dynamic Scaling Analysis of Critical Behaviors in Nonequilibrium Processes</b><br><span>New Physics: Sae Mulli 64, 819-824 (2014)</span></li>
+<li><b>Comment on &quot;Fluctuation theorem for hidden entropy production&quot;</b><br><span>(in revision); arXiv:1402.1235v3</span></li>
+<li><b>Generalized epidemic process on modular networks</b><br><span>Phys. Rev. E 89, 052811 (2014); arXiv:1312.0573</span></li>
+<li><b>Expansion dynamics of a self-avoiding polymer in a cylindrical pore</b><br><span>EPL, 104 (2013) 68003</span></li>
+<li><b>Extended finite-size scaling in synchronized coupled oscillators</b><br><span>Phys. Rev. E 88, 032126 (2013); arXiv:1307.2408</span></li>
+<li><b>Stochastic Local Search in Random Constraint Satisfaction Problems</b><br><span>New Physics: Sae Mulli 63, 995-999 (2013)</span></li>
+<li><b>Impact of sequential disorder on the scaling behavior of airplane boarding time</b><br><span>Phys. Rev. E 87, 052803 (2013); arXiv:1302.2107</span></li>
+<li><b>Numerical Study of Synchronization in the Kuramoto Model with Finite Inertia</b><br><span>New Physics: Sae Mulli 62, 958-962 (2012)</span></li>
+<li><b>Fundamental Structural Constraint of Random Scale-Free Networks</b><br><span>Phys. Rev. Lett 109, 118701 (2012); arXiv:1207.0349</span></li>
+<li><b>Kinetic roughening in polymer thin film growth</b><br><span>Physics Procedia 64 (2012) pp44-48; Proceedings of the 25th Workshop on Computer Simulation Studies in Condensed Matter Physics edited by David P. Landau, H.B. Schuttler, Steven Lewis and Michael Bachmann</span></li>
+<li><b>Absorbing states of zero-temperature Glauber dynamics in random networks</b><br><span>Phys. Rev. E 85, 031123 (2012); arXiv:1112.5927</span></li>
+<li><b>Nonlinear stability of phase-locked states for the Kuramoto model with finite inertia</b><br><span>(in revision); arXiv:1112.2763v1</span></li>
+<li><b>Effect of Blockage on Driven Flow with Periodic Boundary Conditions</b><br><span>New Physics: Sae Mulli 61, 909-914 (2011)</span></li>
+<li><b>Finite-size scaling in random K-satisfiability problems</b><br><span>Phys. Rev. E 82, 061109 (2010); arXiv:1005.0251</span></li>
+<li><b>Universality classes and crossover behaviors in non-Abelian directed sandpiles</b><br><span>Phys. Rev. E 82, 041101 (2010); arXiv:1004.4861</span></li>
+<li><b>Critical behavior of the Ising model in annealed scale-free networks</b><br><span>Phys. Rev. E 80, 051127 (2009); arXiv:0909.1597</span></li>
+<li><b>Instability transitions and ensemble equivalence in diffusive flow</b><br><span>Cent. Eur. J. Phys. 7, 575 (2009)</span></li>
+<li><b>Anomalous scaling behavior in polymer thin film growth by vapor deposition</b><br><span>J. Stat. Mech. (2009) P02031; arXiv:0811.2169</span></li>
+<li><b>Relevance of Abelian Symmetry and Stochasticity in Directed Sandpiles</b><br><span>Phys. Rev. Lett. 101, 218001 (2008); arXiv:0807.1807</span></li>
+<li><b>Boundary-induced abrupt transition in the symmetric exclusion process</b><br><span>Phys. Rev. E 77, 061118 (2008); arXiv:0804.4212</span></li>
+<li><b>Dynamic instability transitions in one-dimensional driven diffusive flow with nonlocal hopping</b><br><span>Phys. Rev. E 75, 061131 (2007); cond-mat/0703604</span></li>
+<li><b>Finite-Size Scaling in Complex Networks</b><br><span>Phys. Rev. Lett. 98, 258701 (2007); cond-mat/0701516</span></li>
+<li><b>Comment on &quot;Non-Mean-Field Behavior of the Contact Process on Scale-Free Networks&quot;</b><br><span>Phys. Rev. Lett. 98, 029801 (2007); cond-mat/0603787</span></li>
+<li><b>Queuing Transitions in the Asymmetric Simple Exclusion Process</b><br><span>Phys. Rev. E 68, 056122 (2003); cond-mat/0307403</span></li>
+<li><b>Effect of a columnar defect on the shape of slow-combustion fronts</b><br><span>Phys. Rev. E 68, 051103 (2003); cond-mat/0307231</span></li>
+<li><b>Macroscopic Car Condensation in a Parking Garage</b><br><span>Phys. Rev. E 66, 036118(2002); cond-mat/0205456</span></li>
+<li><b>Particle Dynamics in a Mass-Conserving Coalescence Process</b><br><span>J. Phys. A 32, L495-L502 (1999); cond-mat/9908001</span></li>
+<li><b>Exact solutions of a restricted ballistic deposition model on a one-dimensional staircase</b><br><span>Phys. Rev. E 51, 1047 (1995); cond-mat/9410029</span></li>
+</ol>
+</section>
+
+<section id="contact">
+<h2>연락처</h2>
+<p>이메일: <a href="mailto:msha@chosun.ac.kr">msha@chosun.ac.kr</a><br>
+연구실: 자연과학관 4521호<br>
+주소: 광주광역시 동구 조선대3길 30 조선대학교 물리교육과 (61452)</p>
+<p>면담 시간: 수요일 오후 1~3시</p>
+</section>
+
+<footer>© 2026 Meesoon Ha</footer>
+</body>
+</html>
