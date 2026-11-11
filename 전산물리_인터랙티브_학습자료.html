@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>전산물리 인터랙티브 학습자료</title>
+<style>
+  :root{--navy:#12263F;--teal:#1FA79B;--amber:#F2A541;--bg:#F4F7FA;--ink:#1B2733;--gray:#5C6B7A;--red:#C8553D}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--ink);background:#fff;line-height:1.55}
+  header{background:var(--navy);color:#fff;padding:18px 24px}
+  header h1{margin:0;font-size:22px}
+  header p{margin:4px 0 0;color:#D6E2EE;font-size:14px}
+  nav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 24px;background:var(--bg);position:sticky;top:0;z-index:5;border-bottom:1px solid #dde5ee}
+  nav button{border:1px solid #c9d5e2;background:#fff;border-radius:18px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--ink);font-family:inherit}
+  nav button.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+  main{max-width:1100px;margin:0 auto;padding:18px 24px 60px}
+  section{display:none}
+  section.on{display:block}
+  h2{margin:6px 0 2px;font-size:20px;color:var(--navy)}
+  .tag{display:inline-block;background:var(--amber);color:var(--navy);border-radius:10px;padding:1px 10px;font-size:12px;font-weight:700;margin-right:6px}
+  .desc{color:var(--gray);margin:4px 0 12px;font-size:14px}
+  .grid{display:grid;grid-template-columns:minmax(260px,330px) 1fr;gap:18px}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}}
+  .panel{background:var(--bg);border-radius:10px;padding:14px}
+  .panel label{display:block;font-size:13px;margin-top:10px}
+  .panel label b{color:var(--teal)}
+  input[type=range]{width:100%}
+  .btn{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:7px 12px;margin:8px 6px 0 0;font-size:13px;cursor:pointer;font-family:inherit}
+  .btn.alt{background:var(--navy)}
+  .btn.warn{background:var(--red)}
+  canvas{width:100%;background:#fff;border:1px solid #dde5ee;border-radius:8px;display:block}
+  .out{font-size:13px;margin-top:10px;padding:8px 10px;background:#fff;border-radius:8px;border:1px solid #dde5ee;min-height:40px;white-space:pre-line}
+  .ask{margin-top:12px;font-size:14px;background:#FFF6E5;border-radius:10px;padding:10px 14px}
+  .ask b{color:#9a5b00}
+  .foot{margin-top:30px;font-size:12px;color:var(--gray);border-top:1px solid #e3eaf2;padding-top:10px}
+  @media print{nav,.panel button,.btn{display:none}section{display:block!important;page-break-after:always}header{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<header>
+  <h1>전산물리 인터랙티브 학습자료</h1>
+  <p>2026학년도 2학기 · 물리교육과 저학년 · 슬라이더를 움직여 결과가 어떻게 바뀌는지 직접 확인해 보세요. 교재 장과 주차는 각 탭에 표시했습니다.</p>
+</header>
+<nav id="nav"></nav>
+<main>
+
+<!-- 1 오일러 -->
+<section id="s1" data-title="낙하: 오일러·RK2">
+  <h2><span class="tag">7주차 · Ch8</span>공기 저항이 있는 낙하: dv/dt = g − γv</h2>
+  <div class="desc">세 수치 방법과 해석해 v = (g/γ)(1 − e^{−γt})를 비교합니다. g = 9.8 m/s², 0 ~ 10 s.</div>
+  <div class="grid"><div class="panel">
+    <label>γ (1/s): <b id="s1g_v"></b><input type="range" id="s1g" min="0.2" max="3" step="0.1" value="1"></label>
+    <label>dt (s): <b id="s1d_v"></b><input type="range" id="s1d" min="0.01" max="1.2" step="0.01" value="0.5"></label>
+    <div class="out" id="s1out"></div>
+  </div><div><canvas id="c1" width="760" height="420"></canvas></div></div>
+  <div class="ask"><b>관찰해 보기</b> dt를 절반으로 줄이면 오일러 오차는 약 몇 배 줄까요? 2차 방법(수정-오일러, 룬게-쿠타)은요? (교재 예제 1~3)</div>
+</section>
+
+<!-- 2 근찾기 -->
+<section id="s2" data-title="근 찾기">
+  <h2><span class="tag">5주차 · Ch6</span>이분법과 뉴턴 방법: f(x) = sin x − 1/2 = 0</h2>
+  <div class="desc">이분법은 구간 [0, π/2]에서, 뉴턴 방법은 x₁ = 1에서 시작합니다. 참값은 π/6 ≈ 0.5236.</div>
+  <div class="grid"><div class="panel">
+    <label>반복 횟수 n: <b id="s2n_v"></b><input type="range" id="s2n" min="0" max="25" step="1" value="3"></label>
+    <div class="out" id="s2out"></div>
+  </div><div><canvas id="c2" width="760" height="420"></canvas></div></div>
+  <div class="ask"><b>관찰해 보기</b> 오차가 10⁻¹⁰ 아래로 내려가는 데 각각 몇 번이 필요한가요? 로그 눈금에서 이분법은 직선, 뉴턴은 급히 떨어지는 이유는? (교재 예제 1·2)</div>
+</section>
+
+<!-- 3 경사하강 -->
+<section id="s3" data-title="곡선 맞춤">
+  <h2><span class="tag">6주차 · Ch7</span>경사하강법으로 비례상수 H 찾기: v = H·d</h2>
+  <div class="desc">잡음이 섞인 자료(합성, 참값 500)에 직선 v = Hx를 맞춥니다. 최소제곱 해 H = Σxy/Σx²와 비교합니다. 학습률이 너무 크면 발산합니다.</div>
+  <div class="grid"><div class="panel">
+    <label>학습률 c: <b id="s3c_v"></b><input type="range" id="s3c" min="0.0005" max="0.04" step="0.0005" value="0.01"></label>
+    <label>반복 횟수: <b id="s3n_v"></b><input type="range" id="s3n" min="0" max="100" step="1" value="20"></label>
+    <button class="btn alt" id="s3new">자료 다시 만들기</button>
+    <div class="out" id="s3out"></div>
+  </div><div><canvas id="c3" width="760" height="420"></canvas></div></div>
+  <div class="ask"><b>관찰해 보기</b> c를 키우며 H의 값이 진동하다 발산하는 경계를 찾아 보세요. 그 경계는 2/Σx² 와 어떤 관계일까요?</div>
+</section>
+
+<!-- 4 사격 -->
+<section id="s4" data-title="포물체·사격법">
+  <h2><span class="tag">9·10주차 · Ch9·10</span>표적 맞히기: 쏘아 맞추기(할선법)</h2>
+  <div class="desc">표적은 R = 100 m. 공기 저항 −γv를 넣을 수 있습니다(수정-오일러, dt = 0.005 s). 버튼으로 할선법이 초기 속력을 찾습니다.</div>
+  <div class="grid"><div class="panel">
+    <label>초기 속력 v₀ (m/s): <b id="s4v_v"></b><input type="range" id="s4v" min="5" max="80" step="0.1" value="20"></label>
+    <label>각도 θ (°): <b id="s4a_v"></b><input type="range" id="s4a" min="5" max="85" step="1" value="45"></label>
+    <label>저항 γ (1/s): <b id="s4g_v"></b><input type="range" id="s4g" min="0" max="0.6" step="0.01" value="0"></label>
+    <button class="btn" id="s4find">할선법으로 v₀ 찾기</button>
+    <div class="out" id="s4out"></div>
+  </div><div><canvas id="c4" width="760" height="420"></canvas></div></div>
+  <div class="ask"><b>관찰해 보기</b> γ = 0, θ = 45°에서 찾은 v₀는 약 31.30 m/s입니다(교재 p98). γ를 올리면 같은 표적을 맞히는 v₀가 어떻게 변하나요?</div>
+</section>
+
+<!-- 5 라플라스 -->
+<section id="s5" data-title="라플라스 풀림">
+  <h2><span class="tag">11주차 · Ch11</span>라플라스 방정식의 풀림(완화) 방법</h2>
+  <div class="desc">[−1,1]² 영역, 경계 φ = 0, 중앙 도체 φ = −1, 처음 내부 φ = 0.1. 각 점을 이웃 네 점의 평균으로 반복해서 바꿉니다.</div>
+  <div class="grid"><div class="panel">
+    <button class="btn" data-it="1">1번</button><button class="btn" data-it="10">10번</button><button class="btn" data-it="100">100번</button><button class="btn" data-it="1000">1000번</button>
+    <button class="btn alt" id="s5reset">처음으로</button>
+    <div class="out" id="s5out"></div>
+  </div><div><canvas id="c5" width="520" height="520" style="max-width:520px"></canvas></div></div>
+  <div class="ask"><b>관찰해 보기</b> 퍼텐셜이 퍼져 나가는 모습을 보세요. 반복할수록 한 번에 바뀌는 양(최대 변화)은 어떻게 줄어드나요? 같은 코드로 열전도 문제도 풀 수 있는 이유는?</div>
+</section>
+
+<!-- 6 브라운 -->
+<section id="s6" data-title="브라운 운동">
+  <h2><span class="tag">12주차 · Ch12</span>브라운 운동: v′ = −v + η(t)</h2>
+  <div class="desc">오일러 방법, η는 [−a, a] 균일 난수(a = √(6T/Δt)). 입력 온도 T와 시뮬레이션으로 잰 ⟨v²⟩를 비교하고, 평균 제곱 이탈 거리를 해석해 2T(t + e^{−t} − 1)와 비교합니다.</div>
+  <div class="grid"><div class="panel">
+    <label>온도 T: <b id="s6T_v"></b><input type="range" id="s6T" min="0.2" max="3" step="0.1" value="1"></label>
+    <label>dt: <b id="s6d_v"></b><input type="range" id="s6d" min="0.01" max="0.2" step="0.01" value="0.01"></label>
+    <button class="btn" id="s6run">다시 실행</button>
+    <div class="out" id="s6out"></div>
+  </div><div><canvas id="c6" width="760" height="420"></canvas></div></div>
+  <div class="ask"><b>관찰해 보기</b> dt를 키우면 잰 ⟨v²⟩가 입력 T에서 벗어납니다(교재 과제 1). 평균 제곱 이탈 거리는 짧은 시간과 긴 시간에서 각각 어떤 꼴로 자라나요?</div>
+</section>
+
+<!-- 7 몬테카를로 -->
+<section id="s7" data-title="몬테카를로 π">
+  <h2><span class="tag">13주차 · Ch13</span>점을 뿌려 π 구하기</h2>
+  <div class="desc">한 변 2인 정사각형에 점 N개를 뿌려 반지름 1인 원 안의 비율로 π ≈ 4·N₁/N 을 구합니다.</div>
+  <div class="grid"><div class="panel">
+    <label>N = 10<sup id="s7n_v"></sup><input type="range" id="s7n" min="1" max="7" step="0.1" value="3"></label>
+    <button class="btn" id="s7run">다시 뿌리기</button>
+    <div class="out" id="s7out"></div>
+  </div><div><canvas id="c7" width="520" height="520" style="max-width:520px"></canvas></div></div>
+  <div class="ask"><b>관찰해 보기</b> N을 10배 키울 때마다 오차는 대략 얼마나 줄어드나요? 같은 N에서 여러 번 뿌려 보며 흩어짐도 보세요.</div>
+</section>
+
+<!-- 8 이징 -->
+<section id="s8" data-title="이징 모형">
+  <h2><span class="tag">13주차 · Ch13</span>메트로폴리스 몬테카를로: 이징 모형</h2>
+  <div class="desc">40×40 격자, 최인접 상호작용(J = 1, k_B = 1). 노란색 = +1, 어두운 색 = −1. 2차원 정사각격자의 전이 온도는 약 2.27입니다(교재의 전역 상호작용 모형과는 다른 설정, 교재 과제 2 참고).</div>
+  <div class="grid"><div class="panel">
+    <label>온도 T: <b id="s8T_v"></b><input type="range" id="s8T" min="0.5" max="4" step="0.05" value="1.5"></label>
+    <button class="btn" id="s8play">시작/정지</button><button class="btn alt" id="s8ord">모두 +1로</button><button class="btn alt" id="s8rand">무작위로</button>
+    <div class="out" id="s8out"></div>
+  </div><div><canvas id="c8" width="520" height="520" style="max-width:520px"></canvas></div></div>
+  <div class="ask"><b>관찰해 보기</b> T를 천천히 올리며 질서도 m = |ΣS|/N이 언제 크게 떨어지는지 보세요. 전이 온도 근처에서 덩어리(도메인)의 크기는?</div>
+</section>
+
+<!-- 9 SIR -->
+<section id="s9" data-title="SIR 감염병">
+  <h2><span class="tag">심화 S2 · Ch17</span>SIR 구획모형과 행위자 기반 모형</h2>
+  <div class="desc">N = 1000, 처음 감염자 1명, 시간 0 ~ 1000. 선은 구획모형(수정-오일러), 점은 행위자 기반(무작위) 한 번의 실행입니다.</div>
+  <div class="grid"><div class="panel">
+    <label>감염 확률 β: <b id="s9b_v"></b><input type="range" id="s9b" min="0.005" max="0.3" step="0.005" value="0.07"></label>
+    <label>회복 확률 γ: <b id="s9g_v"></b><input type="range" id="s9g" min="0.005" max="0.1" step="0.005" value="0.015"></label>
+    <button class="btn" id="s9run">행위자 기반 다시 실행</button>
+    <div class="out" id="s9out"></div>
+  </div><div><canvas id="c9" width="760" height="420"></canvas></div></div>
+  <div class="ask"><b>관찰해 보기</b> R₀ = β/γ가 1을 넘을 때와 넘지 않을 때 무엇이 달라지나요? 행위자 기반에서는 감염자 1명이 시작해도 번지지 못하는 경우가 있습니다. 왜일까요?</div>
+</section>
+
+<!-- 10 퍼셉트론 -->
+<section id="s10" data-title="퍼셉트론 AND">
+  <h2><span class="tag">14주차 · Ch14</span>시그모이드 퍼셉트론이 AND를 배우는 과정</h2>
+  <div class="desc">입력 4개 (0,0) (0,1) (1,0) (1,1), 정답 0 0 0 1. 학습규칙 W → W + α·e·y(1−y)·x, b → b + α·e·y(1−y). 점선은 W₁x₁ + W₂x₂ + b = 0 (결정 경계).</div>
+  <div class="grid"><div class="panel">
+    <label>학습률 α: <b id="s10a_v"></b><input type="range" id="s10a" min="0.05" max="2" step="0.05" value="0.5"></label>
+    <label>에포크: <b id="s10e_v"></b><input type="range" id="s10e" min="0" max="1000" step="10" value="0"></label>
+    <button class="btn alt" id="s10new">초기 가중치 다시 뽑기</button><button class="btn" id="s10xor">XOR로 바꾸기/AND로</button>
+    <div class="out" id="s10out"></div>
+  </div><div><canvas id="c10" width="760" height="420"></canvas></div></div>
+  <div class="ask"><b>관찰해 보기</b> XOR로 바꾸면 선 하나로는 나눌 수 없어 오차가 줄지 않습니다. 교재는 어떻게 이 문제를 해결하나요?</div>
+</section>
+
+<div class="foot">
+  이 자료는 『전산물리』 교재 장의 내용을 수업용으로 단순화한 시뮬레이션입니다(합성 자료와 난수 사용). 교재 값과 직접 비교하려면 코랩 노트북으로 같은 계산을 해 보세요.
+  <button class="btn alt" onclick="window.print()">이 화면을 PDF로 저장(인쇄 → PDF로 저장)</button>
+</div>
+</main>
+
+<script>
+"use strict";
+/* ---------- 공통 ---------- */
+const $ = id => document.getElementById(id);
+function bindRange(id, fmt, cb){ const el=$(id), out=$(id+"_v"); const f=()=>{ out.textContent=fmt?fmt(+el.value):el.value; cb&&cb(); }; el.addEventListener("input",f); f(); return el; }
+function seeded(seed){ let s=seed>>>0; return ()=>{ s=(s*1664525+1013904223)>>>0; return s/4294967296; }; }
+const COL = {navy:"#12263F",teal:"#1FA79B",amber:"#F2A541",red:"#C8553D",gray:"#8896A5",blue:"#2B5C8A",purple:"#5B4B8A"};
+
+function plot(cv, series, o){
+  const ctx=cv.getContext("2d"), W=cv.width, H=cv.height, L=62, R=18, T=18, B=48;
+  ctx.clearRect(0,0,W,H); ctx.fillStyle="#fff"; ctx.fillRect(0,0,W,H);
+  let {xmin,xmax,ymin,ymax}=o;
+  const X=x=>L+(x-xmin)/(xmax-xmin)*(W-L-R), Y=y=>H-B-(y-ymin)/(ymax-ymin)*(H-T-B);
+  ctx.strokeStyle="#e3eaf2"; ctx.fillStyle="#5C6B7A"; ctx.font="12px sans-serif"; ctx.lineWidth=1;
+  const nx=6, ny=5;
+  for(let i=0;i<=nx;i++){ const v=xmin+(xmax-xmin)*i/nx, x=X(v); ctx.beginPath(); ctx.moveTo(x,T); ctx.lineTo(x,H-B); ctx.stroke(); ctx.textAlign="center"; ctx.fillText((+v.toPrecision(3)).toString(),x,H-B+16); }
+  for(let i=0;i<=ny;i++){ const v=ymin+(ymax-ymin)*i/ny, y=Y(v); ctx.beginPath(); ctx.moveTo(L,y); ctx.lineTo(W-R,y); ctx.stroke(); ctx.textAlign="right"; ctx.fillText((+v.toPrecision(3)).toString(),L-6,y+4); }
+  ctx.strokeStyle="#12263F"; ctx.strokeRect(L,T,W-L-R,H-T-B);
+  ctx.fillStyle="#12263F"; ctx.textAlign="center"; ctx.font="13px sans-serif";
+  if(o.xlabel) ctx.fillText(o.xlabel,(L+W-R)/2,H-8);
+  if(o.ylabel){ ctx.save(); ctx.translate(14,(T+H-B)/2); ctx.rotate(-Math.PI/2); ctx.fillText(o.ylabel,0,0); ctx.restore(); }
+  ctx.save(); ctx.beginPath(); ctx.rect(L,T,W-L-R,H-T-B); ctx.clip();
+  series.forEach(s=>{
+    ctx.strokeStyle=s.color; ctx.fillStyle=s.color; ctx.lineWidth=s.w||2; ctx.setLineDash(s.dash||[]);
+    if(s.pts){ s.x.forEach((xv,i)=>{ ctx.beginPath(); ctx.arc(X(xv),Y(s.y[i]),s.r||3.5,0,6.283); ctx.fill(); }); }
+    else if(s.hline!==undefined){ ctx.beginPath(); ctx.moveTo(L,Y(s.hline)); ctx.lineTo(W-R,Y(s.hline)); ctx.stroke(); }
+    else if(s.vline!==undefined){ ctx.beginPath(); ctx.moveTo(X(s.vline),T); ctx.lineTo(X(s.vline),H-B); ctx.stroke(); }
+    else { ctx.beginPath(); let st=false; s.x.forEach((xv,i)=>{ const yv=s.y[i]; if(!isFinite(yv)){st=false;return;} const px=X(xv), py=Y(yv); if(!st){ctx.moveTo(px,py);st=true;} else ctx.lineTo(px,py); }); ctx.stroke(); }
+    ctx.setLineDash([]);
+  });
+  ctx.restore();
+  let lx=L+10, ly=T+16; ctx.font="12px sans-serif"; ctx.textAlign="left";
+  series.filter(s=>s.label).forEach(s=>{ ctx.fillStyle=s.color; ctx.fillRect(lx,ly-9,14,4); ctx.fillStyle="#1B2733"; ctx.fillText(s.label,lx+20,ly-3); ly+=16; });
+}
+function heat(cv, grid, n, lo, hi){
+  const ctx=cv.getContext("2d"), W=cv.width, c=W/n;
+  for(let i=0;i<n;i++)for(let j=0;j<n;j++){
+    const t=Math.max(0,Math.min(1,(grid[i][j]-lo)/(hi-lo)));
+    const r=Math.round(18+t*(242-18)), g=Math.round(38+t*(220-38)*(t>0.5?1:0.6)+ (t>0.5?0:0)), b=Math.round(120+(1-t)*100-t*70);
+    ctx.fillStyle=`rgb(${r},${Math.min(255,g)},${Math.max(0,b)})`; ctx.fillRect(j*c,(n-1-i)*c,c+1,c+1);
+  }
+}
+
+/* ---------- 탭 ---------- */
+const secs=[...document.querySelectorAll("section")]; const nav=$("nav");
+secs.forEach((s,i)=>{ const b=document.createElement("button"); b.textContent=(i+1)+". "+s.dataset.title; b.onclick=()=>show(i); nav.appendChild(b); });
+function show(i){ secs.forEach((s,k)=>s.classList.toggle("on",k===i)); [...nav.children].forEach((b,k)=>b.classList.toggle("on",k===i)); if(i===7) startIsing(); else stopIsing(); location.hash="t"+(i+1); }
+
+/* ---------- 1 오일러 ---------- */
+function s1(){
+  const g=9.8, gam=+$("s1g").value, dt=+$("s1d").value, T=10, n=Math.max(1,Math.round(T/dt));
+  const ana=t=>(g/gam)*(1-Math.exp(-gam*t));
+  const te=[],ve=[],vm=[],vr=[]; let v1=0,v2=0,v3=0, e1=0,e2=0,e3=0;
+  for(let k=0;k<=n;k++){ const t=k*dt; te.push(t); ve.push(v1); vm.push(v2); vr.push(v3);
+    e1=Math.max(e1,Math.abs(v1-ana(t))); e2=Math.max(e2,Math.abs(v2-ana(t))); e3=Math.max(e3,Math.abs(v3-ana(t)));
+    const a=g-gam*v1; v1+=dt*a;
+    const a2=g-gam*v2, vt=v2+dt*a2, at=g-gam*vt; v2+=dt*(a2+at)/2;
+    const vh=v3+0.5*dt*(g-gam*v3); v3+=dt*(g-gam*vh);
+  }
+  const tt=[],ya=[]; for(let k=0;k<=200;k++){ tt.push(T*k/200); ya.push(ana(T*k/200)); }
+  plot($("c1"),[{x:tt,y:ya,color:COL.navy,label:"해석해",w:2.5},{x:te,y:ve,color:COL.red,label:"오일러",dash:[6,4]},{x:te,y:vm,color:COL.teal,label:"수정-오일러"},{x:te,y:vr,color:COL.amber,label:"2차 룬게-쿠타",dash:[2,3]}],{xmin:0,xmax:T,ymin:0,ymax:Math.max(12,g/gam*1.1),xlabel:"t (s)",ylabel:"v (m/s)"});
+  $("s1out").textContent=`종단 속도 g/γ = ${(g/gam).toFixed(2)} m/s\n오차 최댓값\n오일러: ${e1.toExponential(2)}\n수정-오일러: ${e2.toExponential(2)}\n룬게-쿠타: ${e3.toExponential(2)}`;
+}
+bindRange("s1g",v=>v.toFixed(1),s1); bindRange("s1d",v=>v.toFixed(2),s1);
+
+/* ---------- 2 근찾기 ---------- */
+function s2(){
+  const f=x=>Math.sin(x)-0.5, df=x=>Math.cos(x), root=Math.PI/6, N=25, n=+$("s2n").value;
+  let a=0,b=Math.PI/2, x=1; const eb=[],en=[],it=[];
+  for(let k=0;k<=N;k++){ const m=(a+b)/2; eb.push(Math.max(Math.abs(m-root),1e-17)); en.push(Math.max(Math.abs(x-root),1e-17)); it.push(k);
+    if(f(a)*f(m)<0) b=m; else a=m; x-=f(x)/df(x); }
+  const ib=it.slice(0,n+1), lg=e=>e.slice(0,n+1).map(v=>Math.log10(v));
+  plot($("c2"),[{x:ib,y:lg(eb),color:COL.teal,label:"이분법"},{x:ib,y:lg(en),color:COL.red,label:"뉴턴"},{x:ib,y:lg(eb),color:COL.teal,pts:1},{x:ib,y:lg(en),color:COL.red,pts:1}],{xmin:0,xmax:N,ymin:-17,ymax:0,xlabel:"반복 횟수",ylabel:"log10 |오차|"});
+  $("s2out").textContent=`n = ${n}\n이분법 오차: ${eb[n].toExponential(2)}\n뉴턴 오차: ${en[n].toExponential(2)}`;
+}
+bindRange("s2n",null,s2);
+
+/* ---------- 3 경사하강 ---------- */
+let s3x=[],s3y=[];
+function s3make(){ const r=seeded(Math.floor(Math.random()*1e9)); s3x=[];s3y=[]; for(let i=0;i<14;i++){ const x=0.5+3*r(); s3x.push(x); s3y.push(500*x+(r()+r()+r()-1.5)*220); } s3(); }
+function s3(){
+  const c=+$("s3c").value, n=+$("s3n").value; let Sxy=0,Sxx=0; s3x.forEach((x,i)=>{Sxy+=x*s3y[i];Sxx+=x*x;});
+  const Hs=Sxy/Sxx; let H=10; const hist=[H]; for(let k=0;k<n;k++){ H+=c*(Sxy-H*Sxx); hist.push(H); if(!isFinite(H)||Math.abs(H)>1e9){H=NaN;break;} }
+  const xs=[0,4];
+  const left=[{x:s3x,y:s3y,color:COL.navy,pts:1,r:4,label:"자료"},{x:xs,y:xs.map(x=>Hs*x),color:COL.gray,dash:[5,4],label:"최소제곱 해"},{x:xs,y:xs.map(x=>H*x),color:COL.red,label:"경사하강 H"}];
+  plot($("c3"),left,{xmin:0,xmax:4,ymin:0,ymax:2400,xlabel:"d",ylabel:"v"});
+  const stable=c*Sxx<2;
+  $("s3out").textContent=`최소제곱 H = ${Hs.toFixed(2)}\n경사하강 H = ${isFinite(H)?H.toFixed(2):"발산"}  (반복 ${n}번)\nΣx² = ${Sxx.toFixed(1)}  →  c·Σx² = ${(c*Sxx).toFixed(2)} ${stable?"(< 2: 수렴)":"(≥ 2: 발산)"}`;
+}
+bindRange("s3c",v=>v.toFixed(4),s3); bindRange("s3n",null,s3); $("s3new").onclick=s3make; s3make();
+
+/* ---------- 4 사격 ---------- */
+function traj(v0,th,gam){ const g=9.8,dt=0.005; let x=0,y=0,vx=v0*Math.cos(th),vy=v0*Math.sin(th); const xs=[0],ys=[0]; let k=0;
+  while(k<200000){ const ax=-gam*vx, ay=-g-gam*vy; const vxt=vx+dt*ax, vyt=vy+dt*ay, axt=-gam*vxt, ayt=-g-gam*vyt;
+    const nx=x+dt*(vx+vxt)/2, ny=y+dt*(vy+vyt)/2; if(ny<0&&k>0){ const f=y/(y-ny); xs.push(x+f*(nx-x)); ys.push(0); break; }
+    x=nx;y=ny; vx+=dt*(ax+axt)/2; vy+=dt*(ay+ayt)/2; xs.push(x); ys.push(y); k++; }
+  return {xs,ys,range:xs[xs.length-1]}; }
+function s4(){
+  const v0=+$("s4v").value, th=+$("s4a").value*Math.PI/180, gam=+$("s4g").value, tr=traj(v0,th,gam);
+  const xm=Math.max(120,tr.range*1.05), ym=Math.max(...tr.ys,10)*1.15;
+  plot($("c4"),[{x:tr.xs,y:tr.ys,color:COL.teal,label:"궤적"},{x:[100],y:[0],color:COL.red,pts:1,r:7,label:"표적 R = 100 m"}],{xmin:0,xmax:xm,ymin:0,ymax:ym,xlabel:"x (m)",ylabel:"y (m)"});
+  $("s4out").textContent=`착지 거리 = ${tr.range.toFixed(2)} m\n표적과의 차이 = ${(tr.range-100).toFixed(2)} m\n${gam===0?"해석 도달 거리 v²sin2θ/g = "+(v0*v0*Math.sin(2*th)/9.8).toFixed(2)+" m":""}`;
+}
+bindRange("s4v",v=>(+v).toFixed(1),s4); bindRange("s4a",null,s4); bindRange("s4g",v=>v.toFixed(2),s4);
+$("s4find").onclick=()=>{ const th=+$("s4a").value*Math.PI/180, gam=+$("s4g").value; const F=v=>traj(v,th,gam).range-100;
+  let a=5,b=60,fa=F(a),fb=F(b),log=[]; for(let k=0;k<40&&Math.abs(fb)>1e-6;k++){ const c=b-fb*(b-a)/(fb-fa); a=b;fa=fb;b=c;fb=F(b); log.push(`${k+1}: v = ${b.toFixed(5)}, 차이 = ${fb.toFixed(6)}`); if(!isFinite(b)||b>1e4)break; }
+  if(isFinite(b)&&b>0&&b<=80){ $("s4v").value=b.toFixed(1); $("s4v").dispatchEvent(new Event("input")); }
+  $("s4out").textContent=`할선법 반복 ${log.length}회 → v₀ = ${b.toFixed(4)} m/s\n`+log.slice(-4).join("\n")+(b>80?"\n(슬라이더 범위를 넘어 v₀를 표시하지 못함)":""); };
+
+/* ---------- 5 라플라스 ---------- */
+const N5=41; let g5,it5;
+function s5reset(){ g5=Array.from({length:N5},()=>Array(N5).fill(0.1)); for(let i=0;i<N5;i++){ g5[i][0]=g5[i][N5-1]=g5[0][i]=g5[N5-1][i]=0; } const c=(N5-1)/2; g5[c][c]=-1; it5=0; drawS5(0); }
+function drawS5(ch){ heat($("c5"),g5,N5,-1,0.1); $("s5out").textContent=`반복 ${it5}번\n마지막 반복의 최대 변화: ${ch.toExponential(2)}\n중앙 φ = −1, 경계 φ = 0`; }
+function iter5(n){ const c=(N5-1)/2; let ch=0; for(let k=0;k<n;k++){ const old=g5.map(r=>r.slice()); ch=0; for(let i=1;i<N5-1;i++)for(let j=1;j<N5-1;j++){ if(i===c&&j===c)continue; const v=(old[i+1][j]+old[i-1][j]+old[i][j+1]+old[i][j-1])/4; ch=Math.max(ch,Math.abs(v-old[i][j])); g5[i][j]=v; } it5++; } drawS5(ch); }
+document.querySelectorAll("#s5 [data-it]").forEach(b=>b.onclick=()=>iter5(+b.dataset.it)); $("s5reset").onclick=s5reset; s5reset();
+
+/* ---------- 6 브라운 ---------- */
+function s6(){
+  const T=+$("s6T").value, dt=+$("s6d").value, a=Math.sqrt(6*T/dt), steps=Math.round(300/dt*0.5);
+  let v=1,x=0; const ts=[],xs=[],vs=[]; let sum=0,cnt=0; const tot=steps;
+  for(let k=0;k<tot;k++){ const eta=a*(2*Math.random()-1); x+=dt*v; v+=dt*(-v+eta); if(k%Math.max(1,Math.floor(tot/600))===0){ts.push(k*dt);xs.push(x);vs.push(v);} if(k>tot/2){sum+=v*v;cnt++;} }
+  plot($("c6"),[{x:ts,y:xs,color:COL.teal,label:"x(t) 한 번의 실행"}],{xmin:0,xmax:tot*dt,ymin:Math.min(...xs)*1.1-1,ymax:Math.max(...xs)*1.1+1,xlabel:"t",ylabel:"x"});
+  // 평균 제곱 이탈 거리: 짧은 앙상블
+  const R=60, tm=[2,4,6,8,10,12,14,16,18,20], msd=Array(tm.length).fill(0); const dts=Math.min(dt,0.05);
+  for(let r=0;r<R;r++){ let xx=0,vv=1; const aa=Math.sqrt(6*T/dts); const ns=Math.round(20/dts); let idx=0; for(let k=1;k<=ns;k++){ const e=aa*(2*Math.random()-1); xx+=dts*vv; vv+=dts*(-vv+e); if(idx<tm.length&&Math.abs(k*dts-tm[idx])<dts/2){ msd[idx]+=xx*xx/R; idx++; } } }
+  $("s6out").textContent=`입력 온도 T = ${T.toFixed(1)}\n후반부 ⟨v²⟩ = ${(sum/cnt).toFixed(3)}  (온도 추정)\n평균 제곱 이탈 거리 (60회 평균, dt ≤ 0.05):\n  t=10: 측정 ${msd[4].toFixed(1)}, 해석 ${(2*T*(10+Math.exp(-10)-1)).toFixed(1)}\n  t=20: 측정 ${msd[9].toFixed(1)}, 해석 ${(2*T*(20+Math.exp(-20)-1)).toFixed(1)}`;
+}
+bindRange("s6T",v=>v.toFixed(1),s6); bindRange("s6d",v=>v.toFixed(2),s6); $("s6run").onclick=s6;
+
+/* ---------- 7 몬테카를로 π ---------- */
+function s7(){
+  const N=Math.round(Math.pow(10,+$("s7n").value)); $("s7n_v").textContent=" = "+N.toLocaleString();
+  const cv=$("c7"),ctx=cv.getContext("2d"),W=cv.width; ctx.fillStyle="#fff"; ctx.fillRect(0,0,W,W);
+  let inn=0; const draw=Math.min(N,6000);
+  for(let k=0;k<N;k++){ const x=2*Math.random()-1,y=2*Math.random()-1,ins=x*x+y*y<1; if(ins)inn++; if(k<draw){ ctx.fillStyle=ins?COL.teal:COL.amber; ctx.fillRect((x+1)/2*W-1.5,(y+1)/2*W-1.5,3,3); } }
+  ctx.strokeStyle=COL.navy; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(W/2,W/2,W/2,0,6.283); ctx.stroke(); ctx.strokeRect(0,0,W,W);
+  const est=4*inn/N; $("s7out").textContent=`N = ${N.toLocaleString()}\n원 안 ${inn.toLocaleString()}개\nπ 추정 = ${est.toFixed(5)}\n오차 = ${(est-Math.PI).toFixed(5)}  (상대 ${(Math.abs(est-Math.PI)/Math.PI*100).toFixed(3)}%)\n${N>draw?"(그림에는 "+draw+"개만 표시)":""}`;
+}
+$("s7n").addEventListener("input",s7); $("s7run").onclick=s7; s7();
+
+/* ---------- 8 이징 ---------- */
+const L8=40; let sp=null, ising=false, raf=0;
+function reset8(rand){ sp=Array.from({length:L8*L8},()=>rand?(Math.random()<0.5?1:-1):1); draw8(); }
+function sweep8(){ const T=+$("s8T").value; for(let k=0;k<L8*L8;k++){ const i=Math.floor(Math.random()*L8),j=Math.floor(Math.random()*L8),id=i*L8+j;
+  const nb=sp[((i+1)%L8)*L8+j]+sp[((i-1+L8)%L8)*L8+j]+sp[i*L8+(j+1)%L8]+sp[i*L8+(j-1+L8)%L8]; const dE=2*sp[id]*nb; if(dE<=0||Math.random()<Math.exp(-dE/T)) sp[id]=-sp[id]; } }
+function draw8(){ const cv=$("c8"),ctx=cv.getContext("2d"),c=cv.width/L8; let s=0,E=0; for(let i=0;i<L8;i++)for(let j=0;j<L8;j++){ const v=sp[i*L8+j]; s+=v; E-=v*(sp[((i+1)%L8)*L8+j]+sp[i*L8+(j+1)%L8]); ctx.fillStyle=v>0?"#F2C14E":"#12263F"; ctx.fillRect(j*c,i*c,c+0.5,c+0.5); }
+  $("s8out").textContent=`T = ${(+$("s8T").value).toFixed(2)}\n질서도 m = |ΣS|/N = ${(Math.abs(s)/(L8*L8)).toFixed(3)}\n에너지/스핀 = ${(E/(L8*L8)).toFixed(3)}`; }
+function loop8(){ if(!ising)return; for(let k=0;k<2;k++)sweep8(); draw8(); raf=requestAnimationFrame(loop8); }
+function startIsing(){ if(!sp)reset8(true); }
+function stopIsing(){ ising=false; cancelAnimationFrame(raf); }
+$("s8play").onclick=()=>{ ising=!ising; if(ising)loop8(); else cancelAnimationFrame(raf); };
+$("s8ord").onclick=()=>reset8(false); $("s8rand").onclick=()=>reset8(true);
+bindRange("s8T",v=>v.toFixed(2),()=>{ if(sp)draw8(); });
+
+/* ---------- 9 SIR ---------- */
+function s9(agent){
+  const Nn=1000, beta=+$("s9b").value, gam=+$("s9g").value, Tm=1000, dt=0.1, n=Tm/dt;
+  let S=Nn-1,I=1,R=0; const ts=[],Ss=[],Is=[],Rs=[]; const f=(S,I)=>[-beta*S*I/Nn, beta*S*I/Nn-gam*I, gam*I];
+  for(let k=0;k<=n;k++){ if(k%10===0){ts.push(k*dt);Ss.push(S);Is.push(I);Rs.push(R);} const a=f(S,I), S2=S+dt*a[0], I2=I+dt*a[1], b=f(S2,I2); S+=dt*(a[0]+b[0])/2; I+=dt*(a[1]+b[1])/2; R=Nn-S-I; }
+  if(agent||!window._ag){ const st=new Int8Array(Nn); st[0]=1; const as=[],ai=[],ar=[],at=[]; for(let t=0;t<=Tm;t++){ if(t%10===0){ let c0=0,c1=0,c2=0; for(let i=0;i<Nn;i++){ if(st[i]===0)c0++; else if(st[i]===1)c1++; else c2++; } at.push(t);as.push(c0);ai.push(c1);ar.push(c2); }
+      const nw=st.slice(); for(let i=0;i<Nn;i++){ if(st[i]!==1)continue; const j=Math.floor(Math.random()*Nn); if(st[j]===0&&Math.random()<beta)nw[j]=1; if(Math.random()<gam)nw[i]=-1; } for(let i=0;i<Nn;i++)st[i]=nw[i]===-1?2:nw[i]; }
+    window._ag={at,as,ai,ar}; }
+  const A=window._ag;
+  plot($("c9"),[{x:ts,y:Ss,color:COL.blue,label:"S 구획"},{x:ts,y:Is,color:COL.red,label:"I 구획"},{x:ts,y:Rs,color:COL.teal,label:"R 구획"},
+    {x:A.at,y:A.as,color:COL.blue,pts:1,r:2},{x:A.at,y:A.ai,color:COL.red,pts:1,r:2},{x:A.at,y:A.ar,color:COL.teal,pts:1,r:2}],{xmin:0,xmax:Tm,ymin:0,ymax:1000,xlabel:"t",ylabel:"사람 수 (점: 행위자 기반)"});
+  const R0=beta/gam; $("s9out").textContent=`R₀ = β/γ = ${R0.toFixed(2)} ${R0>1?"(> 1: 확산)":"(< 1: 감소)"}\n구획모형 최대 감염자: ${Math.max(...Is).toFixed(0)}명\n구획모형 t=1000 회복자: ${Rs[Rs.length-1].toFixed(0)}명\n행위자 기반 t=1000 회복자: ${A.ar[A.ar.length-1]}명`;
+}
+bindRange("s9b",v=>v.toFixed(3),()=>s9(false)); bindRange("s9g",v=>v.toFixed(3),()=>s9(false)); $("s9run").onclick=()=>s9(true); s9(true);
+
+/* ---------- 10 퍼셉트론 ---------- */
+let W10,b10,xor10=false;
+function newW10(){ W10=[Math.random(),Math.random()]; b10=Math.random(); s10(); }
+const sig=v=>1/(1+Math.exp(-v));
+function s10(){
+  const X=[[1,1],[1,0],[0,1],[0,0]], D=xor10?[0,1,1,0]:[1,0,0,0], al=+$("s10a").value, ne=+$("s10e").value;
+  let W=W10.slice(), b=b10; const es=[]; const xs=[];
+  for(let ep=0;ep<=ne;ep++){ let se=0; for(let n=0;n<4;n++){ const y=sig(W[0]*X[n][0]+W[1]*X[n][1]+b), e=D[n]-y; se+=e*e; const gdt=al*e*y*(1-y); W[0]+=gdt*X[n][0]; W[1]+=gdt*X[n][1]; b+=gdt; } if(ep%5===0){es.push(se);xs.push(ep);} }
+  const cv=$("c10"),ctx=cv.getContext("2d"); // 왼쪽 결정 경계, 오른쪽 오차 곡선 — 한 캔버스에 두 영역
+  ctx.clearRect(0,0,cv.width,cv.height); ctx.fillStyle="#fff"; ctx.fillRect(0,0,cv.width,cv.height);
+  // 왼쪽 패널
+  const px=40,py=30,pw=300,ph=300, sx=x=>px+(x+0.3)/1.6*pw, sy=y=>py+ph-(y+0.3)/1.6*ph;
+  ctx.strokeStyle="#12263F"; ctx.strokeRect(px,py,pw,ph); ctx.font="12px sans-serif"; ctx.fillStyle="#5C6B7A"; ctx.textAlign="center"; ctx.fillText("x1",px+pw/2,py+ph+30); ctx.fillText("x2",px-24,py+ph/2);
+  // 영역 색
+  const img=ctx.createImageData(pw,ph); for(let i=0;i<ph;i++)for(let j=0;j<pw;j++){ const x1=j/pw*1.6-0.3, x2=(ph-i)/ph*1.6-0.3, y=sig(W[0]*x1+W[1]*x2+b); const k=(i*pw+j)*4; img.data[k]=Math.round(242*y+31*(1-y)); img.data[k+1]=Math.round(165*y+167*(1-y)); img.data[k+2]=Math.round(65*y+155*(1-y)); img.data[k+3]=70; } ctx.putImageData(img,px,py);
+  if(Math.abs(W[1])>1e-9){ ctx.strokeStyle="#12263F"; ctx.setLineDash([6,4]); ctx.lineWidth=2; ctx.beginPath(); const y0=(-b-W[0]*(-0.3))/W[1], y1=(-b-W[0]*1.3)/W[1]; ctx.moveTo(sx(-0.3),sy(y0)); ctx.lineTo(sx(1.3),sy(y1)); ctx.stroke(); ctx.setLineDash([]); }
+  X.forEach((p,n)=>{ ctx.fillStyle=D[n]?COL.amber:COL.teal; ctx.beginPath(); ctx.arc(sx(p[0]),sy(p[1]),9,0,6.283); ctx.fill(); ctx.strokeStyle="#12263F"; ctx.lineWidth=1.5; ctx.stroke(); });
+  ctx.fillStyle="#1B2733"; ctx.textAlign="left"; ctx.fillText("● 정답 1",px+8,py+16); ctx.fillStyle=COL.teal; ctx.fillText("● 정답 0",px+8,py+32);
+  // 오른쪽: 오차 곡선
+  const sub=document.createElement("canvas"); sub.width=400; sub.height=cv.height; plot(sub,[{x:xs,y:es,color:COL.red,label:"오차 Σe²"}],{xmin:0,xmax:1000,ymin:0,ymax:Math.max(1.2,es[0]||1),xlabel:"에포크",ylabel:"오차"}); ctx.drawImage(sub,360,0);
+  const outs=X.map((p,n)=>sig(W[0]*p[0]+W[1]*p[1]+b).toFixed(3));
+  $("s10out").textContent=`${xor10?"XOR":"AND"} · 에포크 ${ne}\nW = (${W[0].toFixed(2)}, ${W[1].toFixed(2)}), b = ${b.toFixed(2)}\n출력 (1,1) (1,0) (0,1) (0,0):\n${outs.join("  ")}\n마지막 오차 Σe² = ${es[es.length-1].toFixed(4)}`;
+}
+bindRange("s10a",v=>v.toFixed(2),s10); bindRange("s10e",null,s10); $("s10new").onclick=newW10; $("s10xor").onclick=()=>{ xor10=!xor10; s10(); }; newW10();
+
+/* 시작 */
+const h=parseInt((location.hash||"#t1").slice(2))||1; show(Math.min(Math.max(h,1),secs.length)-1);
+</script>
+</body>
+</html>
